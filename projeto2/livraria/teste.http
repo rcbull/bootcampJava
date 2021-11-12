@@ -1,0 +1,29 @@
+
+### Consulta autores
+GET http://localhost:8080/autores
+
+### Inserir autor
+POST http://localhost:8080/autores
+content-type: application/json
+
+{
+	"nome": "mahoieeccccccc",
+	"email": "mahoiee@gmail.com",
+	"dataNascimento": "2021-01-01",
+	"miniCurriculo": "1234567891011fffff"
+}
+
+### Consulta livros
+GET http://localhost:8080/livros
+
+### Inserir livro
+POST http://localhost:8080/livros
+content-type: application/json
+
+{
+    "id": 1,
+	"titulo": "Aqui vai o título!",
+	"dataLancamento": "2021-01-01",
+	"numeroDePaginas": 100,
+	"autor": "mahoieeccccccc"
+}
