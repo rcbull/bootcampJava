@@ -4,33 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.java.livraria.dto.LivroDto;
 import br.com.java.livraria.dto.LivroFormDto;
-import br.com.java.livraria.model.Autor;
 import br.com.java.livraria.model.Livro;
+import br.com.java.livraria.repository.LivroRepository;
 
 @Service
 public class LivroService {
 
-	private List<Livro> livros = new ArrayList<>();
+	@Autowired
+	private LivroRepository livroRepository;
 	private ModelMapper modelMapper = new ModelMapper();
 
-	public List<LivroDto> listar() {
-
-		return livros.stream().map(t -> modelMapper.map(t, LivroDto.class)).collect(Collectors.toList());
+	public Page<LivroDto> listar(Pageable paginacao) {
+		Page<Livro> livros = livroRepository.findAll(paginacao);
+		return livros.map(t -> modelMapper.map(t, LivroDto.class));
 	}
 
+	@Transactional
 	public void cadastrar(LivroFormDto dto) {
-
 		Livro livro = new ModelMapper().map(dto, Livro.class);
-		
 //		livro.setAutor(new Autor());
-
-		livros.add(livro);
-
+//		livros.add(livro);
+		livro.setId(null);
+		livroRepository.save(livro);
 	}
-
 }
