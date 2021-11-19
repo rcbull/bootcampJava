@@ -31,9 +31,7 @@ public class LivroFormDto {
 	@Min(100)
 	private Integer numeroDePaginas;
 
-//	@JsonAlias("autor")
-//	private String autor;
+	@JsonAlias("autor")
+	private String autor;
 
-	@JsonAlias("autor_id")
-	private Long autorId;
 }
