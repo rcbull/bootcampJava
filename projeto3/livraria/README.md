@@ -1,16 +1,26 @@
 
-# Projeto 2
+# Projeto 3
 
 ## Nova funcionalidade
-Além da funcionalidade de cadastro e listagem de autores, você também deverá implementar uma nova funcionalidade de cadastro e listagem de livros.
 
-Um livro deve possuir as seguintes informações: título, data de lançamento, número de páginas e autor.
+1. Implementar persistência com JPA
 
-Ao cadastrar um novo livro, as seguintes regras deverão ser validadas:
+2. Incluir migrations com o Flyway
 
-- Título deve ser obrigatório e ter no mínimo 10 caracteres;
-- Data de lançamento deve ser uma data menor ou igual a data atual;
-- O número de páginas deve ser maior ou igual a 100.
+3. Gerar relatório dos autores, com a saída no formato JSON e os dados abaixo:
+
+```
+[{
+    “autor” : "André da Silva”,
+    “quantidadeLivros” : 2,
+    “percentual” : 28.57
+},
+{
+    “autor” : "Juliana Carvalho”,
+    “quantidadeLivros” : 1,
+    “percentual” : 14.29
+}]
+```
 
 ## Testes via REST Client no VS Code
 
