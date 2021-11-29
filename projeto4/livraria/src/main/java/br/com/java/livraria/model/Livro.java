@@ -27,12 +27,27 @@ public class Livro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String titulo;
 	private LocalDate dataLancamento;
 	private Integer numeroDePaginas;
-//	private String autor;
 	
 	@ManyToOne
 	private Autor autor;
+
+	public void atualizarInformacoes(String titulo, LocalDate lancamento, int numeroDePaginas) {
+		this.titulo = titulo;
+		this.dataLancamento = lancamento;
+		this.numeroDePaginas = numeroDePaginas;
+		
+	}
+
+	public Livro(String titulo, LocalDate lancamento, Integer numeroDePaginas, Autor autor) {
+		super();
+		this.titulo = titulo;
+		this.dataLancamento = lancamento;
+		this.numeroDePaginas = numeroDePaginas;
+		this.autor = autor;
+	}
 
 }

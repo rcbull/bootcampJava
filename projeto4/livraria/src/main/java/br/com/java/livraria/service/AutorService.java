@@ -1,17 +1,17 @@
 package br.com.java.livraria.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.java.livraria.dto.AutorAtualizarFormDto;
 import br.com.java.livraria.dto.AutorDto;
 import br.com.java.livraria.dto.AutorFormDto;
 import br.com.java.livraria.model.Autor;
@@ -30,9 +30,35 @@ public class AutorService {
 	}
 
 	@Transactional
-	public void cadastrar(AutorFormDto dto) {
-		Autor autor = new ModelMapper().map(dto, Autor.class);
-		autor.setId(null);
+	public AutorDto cadastrar(AutorFormDto dto) {
+		Autor autor = modelMapper.map(dto, Autor.class);
+
 		autorRepository.save(autor);
+		return modelMapper.map(autor, AutorDto.class);
+	}
+
+	@Transactional
+	public AutorDto atualizar(@Valid AutorAtualizarFormDto dto) {
+		Autor autor = autorRepository.getById(dto.getId());
+
+		autor.Atualizar(dto.getNome(), dto.getEmail(), dto.getDataNascimento(), dto.getMiniCurriculo());
+
+		return modelMapper.map(autor, AutorDto.class);
+	}
+
+	@Transactional
+	public void deletar(@NotNull Long id) {
+		autorRepository.deleteById(id);
+
+	}
+
+	public AutorDto detalhar(@NotNull Long id) {
+		Autor autor = autorRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+		return modelMapper.map(autor, AutorDto.class);
+	}
+
+	public AutorDto consultar(@NotNull Long id) {
+		Autor autor = autorRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+		return modelMapper.map(autor, AutorDto.class);
 	}
 }

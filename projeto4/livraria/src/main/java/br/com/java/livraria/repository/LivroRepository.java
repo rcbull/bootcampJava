@@ -11,10 +11,12 @@ import br.com.java.livraria.model.Livro;
 public interface LivroRepository extends JpaRepository<Livro, Long> {
 
 	@Query("select new br.com.java.livraria.dto.RelatorioLivrosDto("
-			+ "a.autor.nome, "
-			+ "count(*), "
-			+ "round(count(*) * 100.0 / (select count(*) from Livro a2) * 1.0, 2) as percentage)"
-			+ " from Livro a "
-			+ "group by a.autor")
+			+ "a.nome, "
+			+ "count(1), "
+			+ "count(1) * 1.0 / ((select count(1) from Livro) * 1.0)) "
+			+ "from Livro l "
+			+ "join Autor a "
+			+ "on l.autor = a.id "
+			+ "group by a.nome")
 	List<RelatorioLivrosDto> relatorioQuantidadeDeLivros();
 }

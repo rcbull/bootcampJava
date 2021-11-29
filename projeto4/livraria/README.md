@@ -1,26 +1,24 @@
 
-# Projeto 3
+# Projeto 4
 
 ## Nova funcionalidade
 
-1. Implementar persistência com JPA
+1.  Instalar JUnit, AssertJ e Mockito, bem como os recursos de testes do Spring Boot
 
-2. Incluir migrations com o Flyway
+Nova funcionalidade
+Além de implementar os recursos citados anteriormente, você também deverá implementar novas funcionalidades na API, que servirão para completar o CRUD de autores e livros.
 
-3. Gerar relatório dos autores, com a saída no formato JSON e os dados abaixo:
+Estas funcionalidade serão:
 
-```
-[{
-    “autor” : "André da Silva”,
-    “quantidadeLivros” : 2,
-    “percentual” : 28.57
-},
-{
-    “autor” : "Juliana Carvalho”,
-    “quantidadeLivros” : 1,
-    “percentual” : 14.29
-}]
-```
+- Atualização dos dados de um determinado autor
+- Exclusão de um determinado autor
+- Detalhamento de um determinado autor
+- Atualização dos dados de um determinado livro
+- Exclusão de um determinado livro
+- Detalhamento de um determinado livro
+- Testes com Swagger em [swagger](http://localhost:8080/swagger-ui.html)
+
+Utilize os recursos do Swagger para realizar os testes das funcionalidades da API como demonstramos durante as aulas.
 
 ## Testes via REST Client no VS Code
 
