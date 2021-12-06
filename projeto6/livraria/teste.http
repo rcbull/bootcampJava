@@ -1,0 +1,111 @@
+
+### Consulta autores
+GET http://localhost:8080/autores
+
+### Inserir autor 1
+POST http://localhost:8080/autores
+content-type: application/json
+
+{
+	"nome": "mahoieeccccccc",
+	"email": "mahoiee@gmail.com",
+	"dataNascimento": "2021-01-01",
+	"miniCurriculo": "mini curriculo"
+}
+
+### Consultar autor 1
+GET http://localhost:8080/autores/1
+
+### Atualizar autor 1
+PUT http://localhost:8080/autores
+content-type: application/json
+
+{
+	"id": 6,
+	"nome": "update autor 1",
+	"email": "mahoiee@gmail.com",
+	"dataNascimento": "2021-01-01",
+	"miniCurriculo": "mini curriculo do autor 1"
+}
+
+### Deletar autor 1
+DELETE http://localhost:8080/autores/1
+
+### Inserir autor 2
+POST http://localhost:8080/autores
+content-type: application/json
+
+{
+	"nome": "Esse é o autor 2",
+	"email": "mahoiee@gmail.com",
+	"dataNascimento": "2021-01-01",
+	"miniCurriculo": "1234567891011fffff"
+}
+
+### Inserir autor com ERRO
+POST http://localhost:8080/autores
+content-type: application/json
+
+{
+	"nome": "Esse é o autor 2",
+	"email": "mahoiee@gmail.com",
+	"dataNascimento": "2021-31-01",
+	"miniCurriculo": "1234567891011fffff"
+}
+
+### Consulta livros
+GET http://localhost:8080/livros
+
+### Inserir livro 1
+POST http://localhost:8080/livros
+content-type: application/json
+
+{
+	"titulo": "Aqui vai o título1!",
+	"dataLancamento": "2021-01-01",
+	"numeroDePaginas": 100,
+	"autorId": 1
+}
+
+### Consultar livro 1
+GET http://localhost:8080/livros/1
+
+### Atualizar livro 2
+PUT http://localhost:8080/livros
+content-type: application/json
+
+{
+	"id": 11,
+	"titulo": "Aqui vai o título2!",
+	"dataLancamento": "2021-02-01",
+	"numeroDePaginas": 102,
+	"autorId": 2
+}
+
+### Delete livro 1
+DELETE http://localhost:8080/livros/1
+
+### Inserir livro 2
+POST http://localhost:8080/livros
+content-type: application/json
+
+{
+	"titulo": "Aqui vai o título2!",
+	"dataLancamento": "2021-02-01",
+	"numeroDePaginas": 102,
+	"autorId": 2
+}
+
+### Inserir livro 3
+POST http://localhost:8080/livros
+content-type: application/json
+
+{
+	"titulo": "Aqui vai o título3!",
+	"dataLancamento": "2021-03-01",
+	"numeroDePaginas": 103,
+	"autorId": 4
+}
+
+### Consulta relatorios
+GET http://localhost:8080/relatorios/livraria
