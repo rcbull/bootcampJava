@@ -1,5 +1,7 @@
 package br.com.java.livraria.controller;
 
+import java.net.URI;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.java.livraria.dto.LivroAtualizarFormDto;
 import br.com.java.livraria.dto.LivroDto;
@@ -35,8 +38,11 @@ public class LivroController {
 	}
 
 	@PostMapping
-	public void cadastrar(@RequestBody @Valid LivroFormDto dto) {
-		service.cadastrar(dto);
+	public ResponseEntity<LivroDto> cadastrar(@RequestBody @Valid LivroFormDto dto, UriComponentsBuilder uriBuilder) {
+		LivroDto livroDto = service.cadastrar(dto);
+
+		URI uri = uriBuilder.path("/livros/{id}").buildAndExpand(livroDto.getId()).toUri();
+		return ResponseEntity.created(uri).body(livroDto);
 	}
 
 	@PutMapping

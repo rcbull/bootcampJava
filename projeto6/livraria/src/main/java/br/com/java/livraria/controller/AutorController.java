@@ -1,5 +1,7 @@
 package br.com.java.livraria.controller;
 
+import java.net.URI;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.java.livraria.dto.AutorAtualizarFormDto;
 import br.com.java.livraria.dto.AutorDto;
@@ -35,8 +38,12 @@ public class AutorController {
 	}
 
 	@PostMapping
-	public void cadastrar(@RequestBody @Valid AutorFormDto dto) {
-		service.cadastrar(dto);
+	public ResponseEntity<AutorDto> cadastrar(@RequestBody @Valid AutorFormDto dto, 
+			UriComponentsBuilder uriBuilder) {
+		AutorDto autorDto = service.cadastrar(dto);
+		
+		URI uri = uriBuilder.path("autores/{id}").buildAndExpand(autorDto.getId()).toUri();
+		return ResponseEntity.created(uri).body(autorDto);	
 	}
 
 	@PutMapping
