@@ -48,7 +48,7 @@ public class LivroControllerTest {
 	private UsuarioRepository usuarioRepository;
 
 	private String token;
-	
+
 	@BeforeEach
 	public void gerarToken() {
 		Usuario logado = new Usuario("admin", "admin", "admin");
@@ -56,41 +56,40 @@ public class LivroControllerTest {
 		logado.adicionarPerfil(admin);
 		usuarioRepository.save(logado);
 		Authentication authentication = new UsernamePasswordAuthenticationToken(logado, logado.getLogin());
-		this.token = tokenService.gerarToken(authentication);		
+		this.token = tokenService.gerarToken(authentication);
 	}
-	
+
 	@Test
 	void naoDeveriaCadastrarLivroComDadosIncompletos() throws Exception {
 		String json = "{}";
 		mvc.perform(post("/livros").contentType(MediaType.APPLICATION_JSON).content(json).header("Authorization",
-				"Bearer " + token))
-				.andExpect(status().isBadRequest());
+				"Bearer " + token)).andExpect(status().isBadRequest());
 	}
 
 	@Test
 	void deveriaCadastrarLivroComDadosCompletos() throws Exception {
-		String jsonAutor = "{\"nome\":\"Robert C. Martin\"," + "\"email\":\"unclebob@gmail.com\","
-				+ "\"dataNascimento\":\"1952-12-5\"," + "\"miniCurriculo\":\"clean code...\"}";
+		String jsonAutor = "{\"nome\":\"Robert C. Martin\", \"email\":\"unclebob@gmail.com\", \"dataNascimento\":\"1952-12-05\",\"miniCurriculo\":\"clean code...\"}";
 
-		String jsonAutorRetornado = "{\"nome\":\"Robert C. Martin\"," + "\"email\":\"unclebob@gmail.com\","
-				+ "\"dataNascimento\":\"1952-12-5\"," + "\"miniCurriculo\":\"clean code...\"}";
+		String jsonAutorRetornado = "{\"nome\":\"Robert C. Martin\", \"email\":\"unclebob@gmail.com\", \"dataNascimento\":\"1952-12-05\",\"miniCurriculo\":\"clean code...\"}";
 
-		MvcResult resultado = mvc.perform(post("/autores").contentType(MediaType.APPLICATION_JSON).content(jsonAutor).header("Authorization",
-				"Bearer " + token))
+		MvcResult resultado = mvc
+				.perform(post("/autores").contentType(MediaType.APPLICATION_JSON).content(jsonAutor)
+						.header("Authorization", "Bearer " + token))
 				.andExpect(status().isCreated()).andExpect(header().exists("Location"))
 				.andExpect(content().json(jsonAutorRetornado)).andReturn();
 
+		System.out.println(resultado.getResponse().getContentAsString());
+
 		Integer id = JsonPath.read(resultado.getResponse().getContentAsString(), "$.id");
 
-		String jsonLivro = "{\"titulo\":\"Código limpo: Habilidades práticas do Agile Software\",\"dataLancamento\":\"2009-9-8\",\"numeroDePaginas\":524,\"autor_id\":"
-				+ id + "}";
+		String jsonLivro = "{" + "\"titulo\": \"Código limpo: Habilidades práticas do Agile Software\","
+				+ "\"dataLancamento\": \"2009-09-08\"," + "\"numeroDePaginas\": 524," + "\"autor_id\": " + id + "}";
 
-		String jsonLivroRetornado = "{\"titulo\":\"Código limpo: Habilidades práticas do Agile Software\",\"dataLancamento\":\"2009-9-8\",\"numeroDePaginas\":524,\"autor_id\":"
-				+ id + "}";
+		String jsonLivroRetornado = "{" + "\"titulo\": \"Código limpo: Habilidades práticas do Agile Software\","
+				+ "\"dataLancamento\": \"2009-09-08\"," + "\"numeroDePaginas\": 524," + "\"autor\": {\"id\":" + id + "}}";
 
 		mvc.perform(post("/livros").contentType(MediaType.APPLICATION_JSON).content(jsonLivro).header("Authorization",
-				"Bearer " + token))
-				.andExpect(status().isCreated()).andExpect(header().exists("Location"))
+				"Bearer " + token)).andExpect(status().isCreated()).andExpect(header().exists("Location"))
 				.andExpect(content().json(jsonLivroRetornado));
 	}
 }

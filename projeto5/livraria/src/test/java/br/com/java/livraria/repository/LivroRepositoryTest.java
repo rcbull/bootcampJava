@@ -42,7 +42,7 @@ public class LivroRepositoryTest {
 
 
 		List<RelatorioLivrosDto> relatorio = repository.relatorioQuantidadeDeLivros();
-		Assertions.assertThat(relatorio).hasSize(4)
+		Assertions.assertThat(relatorio).hasSize(2)
 				.extracting(RelatorioLivrosDto::getAutor, RelatorioLivrosDto::getQuantidade,
 						RelatorioLivrosDto::getPercentual)
 				.containsExactlyInAnyOrder(Assertions.tuple("Autor 1", 1l, 0.5),

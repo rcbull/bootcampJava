@@ -72,10 +72,8 @@ public class AutorControllerTest {
 
 	@Test
 	public void DeveriaCadastrarAutorComDadosCompletos() throws Exception {
-		String json = "{\"nome\":\"Robert C. Martin\"," + "\"email\":\"unclebob@gmail.com\","
-				+ "\"dataNascimento\":\"1952-12-5\"," + "\"miniCurriculo\":\"clean code...\"}";
-		String jsonRetornado = "{\"nome\":\"Robert C. Martin\"," + "\"email\":\"unclebob@gmail.com\","
-				+ "\"dataNascimento\":\"1952-12-5\"," + "\"miniCurriculo\":\"clean code...\"}";
+		String json = "{\"nome\":\"Robert C. Martin\", \"email\":\"unclebob@gmail.com\", \"dataNascimento\":\"1952-12-05\",\"miniCurriculo\":\"clean code...\"}";
+		String jsonRetornado = "{\"nome\":\"Robert C. Martin\", \"email\":\"unclebob@gmail.com\", \"dataNascimento\":\"1952-12-05\",\"miniCurriculo\":\"clean code...\"}";
 
 		mvc.perform(post("/autores").contentType(MediaType.APPLICATION_JSON).content(json).header("Authorization",
 				"Bearer " + token)).andExpect(status().isCreated()).andExpect(header().exists("Location"))
