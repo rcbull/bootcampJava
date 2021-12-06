@@ -27,11 +27,11 @@ public class Livro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String titulo;
 	private LocalDate dataLancamento;
 	private Integer numeroDePaginas;
-	
+
 	@ManyToOne
 	private Autor autor;
 
@@ -39,7 +39,7 @@ public class Livro {
 		this.titulo = titulo;
 		this.dataLancamento = lancamento;
 		this.numeroDePaginas = numeroDePaginas;
-		
+
 	}
 
 	public Livro(String titulo, LocalDate lancamento, Integer numeroDePaginas, Autor autor) {

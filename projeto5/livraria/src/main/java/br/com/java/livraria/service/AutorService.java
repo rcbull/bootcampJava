@@ -1,7 +1,6 @@
 package br.com.java.livraria.service;
 
 import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -10,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.java.livraria.dto.AutorAtualizarFormDto;
 import br.com.java.livraria.dto.AutorDto;
@@ -22,6 +22,7 @@ public class AutorService {
 
 	@Autowired
 	private AutorRepository autorRepository;
+
 	private ModelMapper modelMapper = new ModelMapper();
 
 	public Page<AutorDto> listar(Pageable paginacao) {

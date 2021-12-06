@@ -12,7 +12,7 @@ import br.com.java.livraria.model.Livro;
 @Repository
 public class LivroDao {
 
-	@Autowired
+	@Autowired(required = false)
 	private EntityManager em;
 
 	public void salvar(Livro livro) {

@@ -26,23 +26,23 @@ public class Autor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String nome;
 	private String email;
 	private LocalDate dataNascimento;
 	private String miniCurriculo;
-	
+
 	public void updateAutor() {
-		
+
 	}
-	
+
 	public Autor(String nome, String email, LocalDate nascimento, String miniCurriculo) {
 		this.nome = nome;
 		this.email = email;
 		this.dataNascimento = nascimento;
 		this.miniCurriculo = miniCurriculo;
 	}
-	
+
 	public void Atualizar(String nome, String email, LocalDate nascimento, String miniCurriculo) {
 		this.nome = nome;
 		this.email = email;
