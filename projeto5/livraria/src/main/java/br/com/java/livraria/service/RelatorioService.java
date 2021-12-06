@@ -13,8 +13,8 @@ public class RelatorioService {
 
 	@Autowired
 	private LivroRepository repository;
-	
-	public List<RelatorioLivrosDto> relatorioQuantidadeDeLivros(){
+
+	public List<RelatorioLivrosDto> relatorioQuantidadeDeLivros() {
 		return repository.relatorioQuantidadeDeLivros();
 	}
 }
