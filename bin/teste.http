@@ -1,0 +1,75 @@
+
+### Consulta autores
+GET http://localhost:8080/autores
+
+### Inserir autor 1
+POST http://localhost:8080/autores
+content-type: application/json
+
+{
+	"nome": "mahoieeccccccc",
+	"email": "mahoiee@gmail.com",
+	"dataNascimento": "2021-01-01",
+	"miniCurriculo": "1234567891011fffff"
+}
+
+### Inserir autor 2
+POST http://localhost:8080/autores
+content-type: application/json
+
+{
+	"nome": "Esse é o autor 2",
+	"email": "mahoiee@gmail.com",
+	"dataNascimento": "2021-01-01",
+	"miniCurriculo": "1234567891011fffff"
+}
+
+### Inserir autor com ERRO
+POST http://localhost:8080/autores
+content-type: application/json
+
+{
+	"nome": "Esse é o autor 2",
+	"email": "mahoiee@gmail.com",
+	"dataNascimento": "2021-31-01",
+	"miniCurriculo": "1234567891011fffff"
+}
+
+### Consulta livros
+GET http://localhost:8080/livros
+
+### Inserir livro 1
+POST http://localhost:8080/livros
+content-type: application/json
+
+{
+	"titulo": "Aqui vai o título1!",
+	"dataLancamento": "2021-01-01",
+	"numeroDePaginas": 100,
+	"autorId": 1
+}
+
+### Inserir livro 2
+POST http://localhost:8080/livros
+content-type: application/json
+
+{
+	"titulo": "Aqui vai o título2!",
+	"dataLancamento": "2021-02-01",
+	"numeroDePaginas": 102,
+	"autorId": 2
+}
+
+### Inserir livro 3
+POST http://localhost:8080/livros
+content-type: application/json
+
+{
+	"titulo": "Aqui vai o título3!",
+	"dataLancamento": "2021-03-01",
+	"numeroDePaginas": 103,
+	"autorId": 2
+}
+
+### Consulta relatorios
+GET http://localhost:8080/relatorios/livraria

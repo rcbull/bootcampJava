@@ -16,7 +16,7 @@ Estas funcionalidade serão:
 - Atualização dos dados de um determinado livro
 - Exclusão de um determinado livro
 - Detalhamento de um determinado livro
-- Testes com Swagger em [swagger](http://localhost:8080/swagger-ui.html)
+- Testes com Swagger
 
 Utilize os recursos do Swagger para realizar os testes das funcionalidades da API como demonstramos durante as aulas.
 
