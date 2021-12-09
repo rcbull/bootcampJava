@@ -3,5 +3,6 @@ create table usuarios(
 	nome varchar(100) not null,
 	login varchar(100) not null,
 	senha varchar(100) not null,
+	email varchar(100),
 	primary key(id)
 	);
