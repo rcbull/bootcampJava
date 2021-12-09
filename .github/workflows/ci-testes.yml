@@ -2,7 +2,7 @@ name: Rodar Testes Automatizados
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   test:
