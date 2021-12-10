@@ -6,12 +6,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.java.livraria.dto.UsuarioDto;
 import br.com.java.livraria.dto.UsuarioFormDto;
+import br.com.java.livraria.infra.EmailSender;
 import br.com.java.livraria.model.Perfil;
 import br.com.java.livraria.model.Usuario;
 import br.com.java.livraria.repository.PerfilRepository;
@@ -31,11 +33,13 @@ public class UsuarioService {
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Autowired
+	private EmailSender emailSender;
 
 	public Page<UsuarioDto> listar(Pageable paginacao) {
 		Page<Usuario> usuarios = usuarioRepository.findAll(paginacao);
 		return usuarios.map(t -> modelMapper.map(t, UsuarioDto.class));
-
 	}
 
 	@Transactional
@@ -50,6 +54,16 @@ public class UsuarioService {
 		usuario.setSenha(bCryptPasswordEncoder.encode(senha));
 
 		usuarioRepository.save(usuario);
+		
+		String destinatario = usuario.getEmail();
+        String assunto =  "Bem vindo(a)," ;
+		
+		String mensagem =  String.format( " Olá %s!\n\n "
+				+  " Segue seus dados de acesso: "
+				+  " \n Login:%s "
+				+  " \n Senha:%s " , usuario . getNome (), usuario . getLogin (), senha);
+		
+		emailSender.enviarEmail(destinatario , assunto, mensagem);
 
 		return modelMapper.map(usuario, UsuarioDto.class);
 
