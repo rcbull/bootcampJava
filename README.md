@@ -1,24 +1,19 @@
 
-# Projeto 4
+# Projeto 6
+
+## Novos recursos
+
+- Incluir GitHub Actions
+
+arquivo do CI em '.github/workflows/ci-testes.yml'
+
+- Fazer deploy no Heroku
 
 ## Nova funcionalidade
 
-1.  Instalar JUnit, AssertJ e Mockito, bem como os recursos de testes do Spring Boot
+Além de implementar os recursos citados anteriormente, você também deverá implementar a funcionalidade de envio de email, de maneira assíncrona, ao cadastrar um novo usuário na API, similar ao que foi demonstrado durante as aulas.
 
-Nova funcionalidade
-Além de implementar os recursos citados anteriormente, você também deverá implementar novas funcionalidades na API, que servirão para completar o CRUD de autores e livros.
-
-Estas funcionalidade serão:
-
-- Atualização dos dados de um determinado autor
-- Exclusão de um determinado autor
-- Detalhamento de um determinado autor
-- Atualização dos dados de um determinado livro
-- Exclusão de um determinado livro
-- Detalhamento de um determinado livro
-- Testes com Swagger em [swagger](http://localhost:8080/swagger-ui.html)
-
-Utilize os recursos do Swagger para realizar os testes das funcionalidades da API como demonstramos durante as aulas.
+Lembre-se de criar duas classes para o envio de emails, sendo que uma delas deve ser ativada apenas em ambiente de produção e a outra, que não envia email de verdade, apenas imprimirá as informações do email no console, deve ser ativada nos ambientes de desenvolvimento e testes.
 
 ## Testes via REST Client no VS Code
 
